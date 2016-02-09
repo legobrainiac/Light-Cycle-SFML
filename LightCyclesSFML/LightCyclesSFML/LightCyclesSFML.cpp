@@ -1,8 +1,9 @@
 #include <SFML/Graphics.hpp>
 #include <string>
 #include <windows.h>
-#include "Game.h"
 #include "utils.h"
+#include "TextureManager.h"
+#include "Player.h"
 
 //-----------------------------------------------------------
 using namespace sf;
