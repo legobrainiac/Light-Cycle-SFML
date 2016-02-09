@@ -1,0 +1,7 @@
+﻿  TextureManager.cpp
+  Game.cpp
+c:\users\tomas\documents\visual studio 2015\projects\lightcyclessfml\lightcyclessfml\game.cpp(49): warning C4244: 'argument': conversion from 'sf::Int32' to 'float', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  LightCyclesSFML.cpp
+  LightCyclesSFML.vcxproj -> C:\Users\tomas\documents\visual studio 2015\Projects\LightCyclesSFML\Debug\LightCyclesSFML.exe
