@@ -157,11 +157,11 @@
   <ItemGroup>
     <ClCompile Include="LightCyclesSFML.cpp" />
     <ClCompile Include="Player.cpp" />
-    <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="AssetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h" />
-    <ClInclude Include="TextureManager.h" />
+    <ClInclude Include="AssetManager.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
