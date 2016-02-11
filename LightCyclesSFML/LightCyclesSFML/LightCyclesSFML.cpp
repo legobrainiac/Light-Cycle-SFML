@@ -15,15 +15,15 @@ void Update(int dt, Event& event);
 void ConsoleDebugCallBack(string message, int priority);
 
 //-----------------------------------------------------------
-const string			GAME_NAME = "Light Cycles Game";
-const int				NPC_COUNT = 3;
-RenderWindow *			_window;
-Event 					_event;
-AssetManager *			_asset_manager;
-Player *				_player;
-vector<Npc*>			_npcs;
-Text					_vert_count_player;
-HANDLE					_hConsole;
+const string		GAME_NAME = "Light Cycles Game";
+const int			NPC_COUNT = 1;
+RenderWindow *		_window;
+Event 				_event;
+AssetManager *		_asset_manager;
+Player *			_player;
+vector<Npc*>		_npcs;
+Text				_vert_count_player;
+HANDLE				_hConsole;
 
 //-----------------------------------------------------------
 int main()
@@ -32,6 +32,7 @@ int main()
 	_hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
 	_asset_manager = new AssetManager(&ConsoleDebugCallBack);
 	_window = new RenderWindow(VideoMode(1280, 720), GAME_NAME);
+	_window->setFramerateLimit(60);
 
 	//Player init...
 	_player = new Player();
@@ -83,6 +84,7 @@ void Render()
 	{
 		_window->draw(*npc);
 		_window->draw(npc->GetTrail());
+		ConsoleDebugCallBack("Vertex count = " + to_string(npc->GetTrail().getVertexCount()), INFO);
 	}
 	_window->draw(_vert_count_player);
 	_window->display();

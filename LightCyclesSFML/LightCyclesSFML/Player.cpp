@@ -5,6 +5,7 @@ Player::Player()
 {
 	setPosition(Vector2f(640, 360));
 	_name = "Player";
+	_vertex_color = Color::Green;
 	_trail = new VertexArray(LinesStrip, 200);
 	_trail->clear();
 	_clock.restart();
@@ -59,11 +60,11 @@ void Player::Update(int dt)
 		setRotation(DOWN);
 	}
 
-	if (_clock.getElapsedTime().asMilliseconds() % 100 == 0)
+	if (_clock.getElapsedTime().asMilliseconds() > 100)
 	{
 		Vertex _vertex;
 		_vertex.position = getPosition();
-		_vertex.color = Color::Green;
+		_vertex.color = _vertex_color;
 		_trail->append(_vertex);
 		_clock.restart();
 	}

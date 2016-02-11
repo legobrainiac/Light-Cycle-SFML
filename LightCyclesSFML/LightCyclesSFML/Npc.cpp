@@ -4,8 +4,8 @@
 Npc::Npc() : Player()
 {
 	_name = "Npc";
+	_vertex_color = Color::Red;
 }
-
 
 //-----------------------------------------------------------
 Npc::~Npc()
@@ -15,10 +15,9 @@ Npc::~Npc()
 //-----------------------------------------------------------
 void Npc::Update(int dt)
 {
-	if ((_clock.getElapsedTime().asMilliseconds() % (rand() % 100 - 300)) == 0)
+	if ((_clock.getElapsedTime().asMilliseconds() > (rand() % 100 - 300)))
 	{
 		_rotation = GetRandomRotation(time(nullptr));
-		_clock.restart();
 	}
 
 	if (!IsInsideRect(Rect<int>(0, 0, 1280, 720), getPosition()))

@@ -13,12 +13,13 @@ class Player : public Drawable, public Transformable
 
 	//-----------------------------------------------------------
 protected:
-	Sprite				_sprite;
-	VertexArray *		_trail;
-	Clock				_clock;
-	ROTATIONS			_rotation;
-	string				_name;
-	float				_speed = 0.5f;
+	Sprite			_sprite;
+	VertexArray *	_trail;
+	Clock			_clock;
+	ROTATIONS		_rotation;
+	string			_name;
+	Color			_vertex_color;
+	float			_speed = 0.2f;
 
 	void(*ConsoleMessageCallBack)(string, int);
 	void draw(RenderTarget& target, RenderStates states) const override;
