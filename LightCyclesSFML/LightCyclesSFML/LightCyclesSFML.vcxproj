@@ -156,10 +156,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LightCyclesSFML.cpp" />
+    <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="AssetManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="AssetManager.h" />
     <ClInclude Include="utils.h" />

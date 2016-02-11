@@ -3,7 +3,10 @@
 //-----------------------------------------------------------
 Player::Player()
 {
-	_trail = new VertexArray(Lines, 200);
+	setPosition(Vector2f(640, 360));
+	_name = "Player";
+	_trail = new VertexArray(LinesStrip, 200);
+	_trail->clear();
 	_clock.restart();
 }
 
@@ -23,7 +26,7 @@ void Player::draw(RenderTarget& target, RenderStates states) const
 void Player::SetTexture(Texture &tex)
 {
 	_sprite.setTexture(tex);
-	ConsoleMessageCallBack("Changed player texture...", INFO);
+	ConsoleMessageCallBack("Changed " + _name + " texture...", INFO);
 }
 
 //-----------------------------------------------------------
@@ -56,16 +59,14 @@ void Player::Update(int dt)
 		setRotation(DOWN);
 	}
 
-	/*
-	if (_clock.getElapsedTime().asMilliseconds() % 100 == 0) { }
-	*/
-
-	Vertex _vertex;
-	_vertex.position = getPosition();
-	_vertex.color = Color::Green;
-	_trail->append(_vertex);
-	_clock.restart();
-	
+	if (_clock.getElapsedTime().asMilliseconds() % 100 == 0)
+	{
+		Vertex _vertex;
+		_vertex.position = getPosition();
+		_vertex.color = Color::Green;
+		_trail->append(_vertex);
+		_clock.restart();
+	}
 }
 
 //-----------------------------------------------------------
@@ -75,7 +76,13 @@ VertexArray& Player::GetTrail() const
 }
 
 //-----------------------------------------------------------
-void Player::SetDirection(ROTATIONS rot)
+void Player::ClearTrail() const
+{
+	_trail->clear();
+}
+
+//-----------------------------------------------------------
+void Player::SetDirection(const ROTATIONS rot)
 {
 	_rotation = rot;
 }

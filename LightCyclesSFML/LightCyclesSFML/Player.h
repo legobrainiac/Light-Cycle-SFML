@@ -12,13 +12,13 @@ class Player : public Drawable, public Transformable
 {
 
 	//-----------------------------------------------------------
-private:
-	VertexArray	_vertices;
-	Sprite	_sprite;
-	VertexArray * _trail;
-	Clock _clock;
-	ROTATIONS _rotation;
-	float	_speed = 0.5f;
+protected:
+	Sprite				_sprite;
+	VertexArray *		_trail;
+	Clock				_clock;
+	ROTATIONS			_rotation;
+	string				_name;
+	float				_speed = 0.5f;
 
 	void(*ConsoleMessageCallBack)(string, int);
 	void draw(RenderTarget& target, RenderStates states) const override;
@@ -29,7 +29,8 @@ public:
 	void SetDirection(ROTATIONS rot);
 	void SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int));
 	VertexArray& GetTrail() const;
-	void Update(int dt);
+	virtual void Update(int dt);
+	void ClearTrail() const;
 	Player();
 	~Player();
 };

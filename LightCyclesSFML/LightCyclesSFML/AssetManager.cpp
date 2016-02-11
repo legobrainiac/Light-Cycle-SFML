@@ -3,7 +3,7 @@
 #include "AssetManager.h"
 
 //-----------------------------------------------------------
-AssetManager::AssetManager(void (* ConsoleMsgCallBack)(string, int))
+AssetManager::AssetManager(void (*ConsoleMsgCallBack)(string, int))
 {
 	ConsoleMessageCallBack = ConsoleMsgCallBack;
 	ConsoleMessageCallBack("Started loading textures...", INFO);
@@ -18,7 +18,7 @@ AssetManager::~AssetManager()
 }
 
 //-----------------------------------------------------------
-void AssetManager::SetConsoleMsgCallBack(void(* ConsoleMsgCallBack)(string, int))
+void AssetManager::SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int))
 {
 	ConsoleMessageCallBack = ConsoleMsgCallBack;
 }

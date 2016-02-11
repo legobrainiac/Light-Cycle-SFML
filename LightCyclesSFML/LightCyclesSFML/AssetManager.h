@@ -19,8 +19,8 @@ private:
 
 	//-----------------------------------------------------------
 public:
-	Texture _cycle_texture;
-	Font _sansation;
+	Texture			_cycle_texture;
+	Font			_sansation;
 
 	void SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int));
 	void LoadTextures();
