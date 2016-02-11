@@ -4,6 +4,8 @@
 #include "AssetManager.h"
 #include "Npc.h"
 #include "vector"
+#include "Tile.h"
+#include "UiButton.h"
 
 //-----------------------------------------------------------
 using namespace sf;
@@ -13,15 +15,20 @@ using namespace std;
 void Render();
 void Update(int dt, Event& event);
 void ConsoleDebugCallBack(string message, int priority);
+void KeyCallBack(UiButton& button);
 
 //-----------------------------------------------------------
 const string		GAME_NAME = "Light Cycles Game";
 const int			NPC_COUNT = 1;
+const int			TILE_COUNT_SIDE = 16;
 RenderWindow *		_window;
+View				_view;
 Event 				_event;
 AssetManager *		_asset_manager;
 Player *			_player;
 vector<Npc*>		_npcs;
+vector<Tile*>		_tiles;
+UiButton			_button;
 Text				_vert_count_player;
 HANDLE				_hConsole;
 
@@ -33,6 +40,7 @@ int main()
 	_asset_manager = new AssetManager(&ConsoleDebugCallBack);
 	_window = new RenderWindow(VideoMode(1280, 720), GAME_NAME);
 	_window->setFramerateLimit(60);
+	_view.reset(FloatRect(0, 0, 1280, 720));
 
 	//Player init...
 	_player = new Player();
@@ -40,11 +48,31 @@ int main()
 	_player->SetTexture(_asset_manager->_cycle_texture);
 	_player->setScale(Vector2f(1, 1));
 
-	//Npc init...
-	for (size_t i = 0; i < NPC_COUNT; i++)
+	//Button init...
+	_button.SetKeyCallBack(&KeyCallBack);
+	_button.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_button.SetColor(Color::Green);
+	_button.SetTexture(_asset_manager->_tile);
+	_button.setPosition(100,100);
+	_button.SetSize(Rect<int>(_button.getPosition().x, _button.getPosition().y, 100, 50));
+
+	//Map init TODO: Should be in its own class for the heck of it...
+	ConsoleDebugCallBack("Map gen started...", INFO);
+	for (size_t x = 0; x < TILE_COUNT_SIDE; x++)
 	{
-		//Npc* npc = new Npc();
-	
+		for (size_t y = 0; y < TILE_COUNT_SIDE; y++)
+		{
+			auto tile = new Tile(Vector2f(x * 32, y * 32));
+			tile->SetTexture(_asset_manager->_tile);
+			_tiles.push_back(tile);
+		}
+	}
+	ConsoleDebugCallBack("Map gen finished...", SUCCESS);
+
+	//Npc init...
+	ConsoleDebugCallBack("Adding npc's...", INFO);
+	for (size_t i = 0; i < NPC_COUNT; i++)
+	{	
 		_npcs.push_back(new Npc());
 	}
 
@@ -59,6 +87,7 @@ int main()
 	_vert_count_player.setPosition(Vector2f(20,20));
 	_vert_count_player.setScale(Vector2f(1,1));
 
+	ConsoleDebugCallBack("Game started...", SUCCESS);
 	//Start the game...
 	while (_window->isOpen())
 	{
@@ -78,14 +107,26 @@ void Render()
 	Clock clock;
 
 	_window->clear();
+	//Map draw calls...
+	for each(auto tile in _tiles)
+	{
+		_window->draw(*tile);
+	}
+
+	//Player and npc draw calls...
 	_window->draw(*_player);
 	_window->draw(_player->GetTrail());
+
 	for each(auto npc in _npcs)
 	{
 		_window->draw(*npc);
 		_window->draw(npc->GetTrail());
-		ConsoleDebugCallBack("Vertex count = " + to_string(npc->GetTrail().getVertexCount()), INFO);
 	}
+
+	//Ui draw call...
+	_window->draw(_button);
+
+	//Debug draw calls...
 	_window->draw(_vert_count_player);
 	_window->display();
 
@@ -99,6 +140,7 @@ void Render()
 void Update(int dt, Event& event)
 {
 	_player->Update(dt);
+	_view.setCenter(_player->getPosition());
 
 	for each(auto npc in _npcs)
 	{
@@ -135,6 +177,19 @@ void Update(int dt, Event& event)
 	{
 		_player->SetDirection(RIGHT);
 	}
+
+	//Ui Button
+	if (Mouse::isButtonPressed(Mouse::Left))
+	{
+		_button.Update(dt, *_window);
+	}
+}
+
+//-----------------------------------------------------------
+void KeyCallBack(UiButton& button)
+{
+	ConsoleDebugCallBack("Game closing...", SUCCESS);
+	_window->close();
 }
 
 //-----------------------------------------------------------

@@ -159,11 +159,15 @@
     <ClCompile Include="Npc.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="AssetManager.cpp" />
+    <ClCompile Include="Tile.cpp" />
+    <ClCompile Include="UiButton.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Npc.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="AssetManager.h" />
+    <ClInclude Include="Tile.h" />
+    <ClInclude Include="UiButton.h" />
     <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

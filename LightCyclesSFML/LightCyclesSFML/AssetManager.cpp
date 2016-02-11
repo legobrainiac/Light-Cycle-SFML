@@ -28,11 +28,15 @@ void AssetManager::LoadTextures()
 {
 	if (!_cycle_texture.loadFromFile("Assets/cycle.png"))
 	{
-		ConsoleMessageCallBack("Error loading texture...", ERRO);
+		ConsoleMessageCallBack("Error loading cycle texture...", ERRO);
 	}
 	if (!_sansation.loadFromFile("Assets/sansation.ttf"))
 	{
 		ConsoleMessageCallBack("Error loading font...", ERRO);
+	}
+	if (!_tile.loadFromFile("Assets/tile.png"))
+	{
+		ConsoleMessageCallBack("Error loading tile texture...", ERRO);
 	}
 }
 
