@@ -68,7 +68,7 @@ int main()
 	_buttonResetBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
 	_buttonResetBots.SetTexture(_asset_manager->_tile);
 	_buttonResetBots.setPosition(100, 160);
-	_buttonResetBots.SetSize(Rect<int>(_buttonExit.getPosition().x, _buttonExit.getPosition().y, 150, 50));
+	_buttonResetBots.SetSize(Rect<int>(_buttonResetBots.getPosition().x, _buttonResetBots.getPosition().y, 150, 50));
 	_buttonResetBots.Text.setFont(_asset_manager->_sansation);
 	_buttonResetBots.Text.setString("Reset Bots");
 	_buttonResetBots.SetId(1);
@@ -214,7 +214,7 @@ void KeyCallBack(UiButton& button)
 	switch (button.GetId())
 	{
 	case 0:
-		ConsoleDebugCallBack("Button with id 0 clicked...", SUCCESS);
+		_window->close();
 		break;
 	case 1:
 		for each(auto npc in _npcs)
