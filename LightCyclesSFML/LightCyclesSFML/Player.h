@@ -14,7 +14,7 @@ class Player : public Drawable, public Transformable
 	//-----------------------------------------------------------
 protected:
 	Sprite			_sprite;
-	VertexArray *	_trail;
+	VertexArrayPlus *	_trail;
 	Clock			_clock;
 	ROTATIONS		_rotation;
 	string			_name;
@@ -29,7 +29,7 @@ public:
 	void SetTexture(Texture &tex);
 	void SetDirection(ROTATIONS rot);
 	void SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int));
-	VertexArray& GetTrail() const;
+	VertexArrayPlus& GetTrail() const;
 	virtual void Update(int dt);
 	void ClearTrail() const;
 	Player();

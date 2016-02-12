@@ -6,6 +6,7 @@
 
 //-----------------------------------------------------------
 using namespace sf;
+using namespace std;
 
 //-----------------------------------------------------------
 enum CONSOLE_COLORS {
@@ -88,3 +89,27 @@ static bool IsInsideRect(Rect<int> rect, Vector2f pos)
 {
 	return rect.contains(pos.x, pos.y);
 }
+
+//-----------------------------------------------------------
+static bool VertexArrayIntersect(vector<Vertex> array1, vector<Vertex> array2)
+{
+	//TODO: Make this work, too tired to think of an algorithm for this...
+	//Not sure if this is going to be efficient, lets hope so... Goals for 13/02/2016: get this working...
+	//Idea: check vertex intersection by pairs...
+}
+
+//-----------------------------------------------------------
+// Allows me to add a function to the VertexArray.hpp, had to change the hpp file slightly 
+// Changed (at line 183) private: to protected: so i could access m_vertices 
+//-----------------------------------------------------------
+class VertexArrayPlus : public VertexArray
+{
+public:
+	VertexArrayPlus(PrimitiveType type, size_t vertexCount = 0) : VertexArray(type, vertexCount) {}
+
+	vector<Vertex> GetVertexArray() const
+	{
+		return m_vertices;
+	}
+};
+

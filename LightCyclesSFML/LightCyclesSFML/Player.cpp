@@ -6,7 +6,7 @@ Player::Player()
 	setPosition(Vector2f(640, 360));
 	_name = "Player";
 	_vertex_color = Color::Green;
-	_trail = new VertexArray(LinesStrip, 200);
+	_trail = new VertexArrayPlus(LinesStrip, 200);
 	_trail->clear();
 	_clock.restart();
 }
@@ -72,7 +72,7 @@ void Player::Update(int dt)
 }
 
 //-----------------------------------------------------------
-VertexArray& Player::GetTrail() const
+VertexArrayPlus& Player::GetTrail() const
 {
 	return *_trail;
 }

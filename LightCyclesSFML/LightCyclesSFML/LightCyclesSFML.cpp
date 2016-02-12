@@ -31,7 +31,7 @@ vector<Tile*>		_tiles;
 vector<UiButton*>	_uiButtons;
 HANDLE				_hConsole;
 
-//----------------------------------------------Ui components
+//--------------------------------------------- Ui components
 UiButton			_buttonExit;
 UiButton			_buttonResetBots;
 UiButton			_buttonResetPlayer;
