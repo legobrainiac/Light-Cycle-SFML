@@ -34,6 +34,7 @@ HANDLE				_hConsole;
 //----------------------------------------------Ui components
 UiButton			_buttonExit;
 UiButton			_buttonResetBots;
+UiButton			_buttonResetPlayer;
 Text				_vert_count_player;
 
 //-----------------------------------------------------------
@@ -72,6 +73,16 @@ int main()
 	_buttonResetBots.Text.setFont(_asset_manager->_sansation);
 	_buttonResetBots.Text.setString("Reset Bots");
 	_buttonResetBots.SetId(1);
+
+	_uiButtons.push_back(&_buttonResetPlayer);
+	_buttonResetPlayer.SetKeyCallBack(&KeyCallBack);
+	_buttonResetPlayer.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_buttonResetPlayer.SetTexture(_asset_manager->_tile);
+	_buttonResetPlayer.setPosition(100, 220);
+	_buttonResetPlayer.SetSize(Rect<int>(_buttonResetPlayer.getPosition().x, _buttonResetPlayer.getPosition().y, 150, 50));
+	_buttonResetPlayer.Text.setFont(_asset_manager->_sansation);
+	_buttonResetPlayer.Text.setString("Reset Player");
+	_buttonResetPlayer.SetId(2);
 
 	//Map init TODO: Should be in its own class for the heck of it...
 	ConsoleDebugCallBack("Map gen started...", INFO);
@@ -132,12 +143,10 @@ void Render()
 
 	//Player and npc draw calls...
 	_window->draw(*_player);
-	_window->draw(_player->GetTrail());
 
 	for each(auto npc in _npcs)
 	{
 		_window->draw(*npc);
-		_window->draw(npc->GetTrail());
 	}
 
 	//Ui draw call...
@@ -160,7 +169,6 @@ void Render()
 void Update(int dt, Event& event)
 {
 	_player->Update(dt);
-	_view.setCenter(_player->getPosition());
 
 	for each(auto npc in _npcs)
 	{
@@ -169,37 +177,18 @@ void Update(int dt, Event& event)
 
 	_vert_count_player.setString("Player trail vert count = " + to_string(_player->GetTrail().getVertexCount()));
 
-	//General windows commands...
-	if (Keyboard::isKeyPressed(Keyboard::Escape))
-	{
-		_window->close();
-	}
-
-	if (Keyboard::isKeyPressed(Keyboard::C))
-	{
-		_player->ClearTrail();
-	}
-
 	//Player movement...
 	if (Keyboard::isKeyPressed(Keyboard::Down))
-	{
 		_player->SetDirection(DOWN);
-	}
 	else if (Keyboard::isKeyPressed(Keyboard::Up))
-	{
 		_player->SetDirection(UP);
-	}
 	else if (Keyboard::isKeyPressed(Keyboard::Left))
-	{
 		_player->SetDirection(LEFT);
-	}
 	else if (Keyboard::isKeyPressed(Keyboard::Right))
-	{
 		_player->SetDirection(RIGHT);
-	}
 
 	//Ui Button
-	if (Mouse::isButtonPressed(Mouse::Left))
+	if (event.type == Event::MouseButtonReleased && event.mouseButton.button == Mouse::Left)
 	{
 		for each(auto button in _uiButtons)
 		{
@@ -221,6 +210,10 @@ void KeyCallBack(UiButton& button)
 		{
 			npc->Reset();
 		}
+		break;
+	case 2:
+		_player->setPosition(Vector2f(640,360));
+		_player->ClearTrail();
 		break;
 	default:
 		break;
@@ -255,3 +248,4 @@ void ConsoleDebugCallBack(string message, int color)
 	}
 	SetConsoleTextAttribute(_hConsole, FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE);
 }
+

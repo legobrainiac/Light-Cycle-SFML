@@ -21,6 +21,7 @@ void Player::draw(RenderTarget& target, RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(_sprite, states);
+	target.draw(*_trail);
 }
 
 //-----------------------------------------------------------
