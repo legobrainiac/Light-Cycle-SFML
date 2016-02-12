@@ -14,6 +14,7 @@ class Npc : public Player
 	//-----------------------------------------------------------
 public:
 	void Update(int dt) override;
+	void Reset();
 	Npc();
 	~Npc();
 };

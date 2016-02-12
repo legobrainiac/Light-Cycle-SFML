@@ -33,6 +33,7 @@ void UiButton::draw(RenderTarget& target, RenderStates states) const
 {
 	states.transform *= getTransform();
 	target.draw(_sprite, states);
+	target.draw(Text,states);
 }
 
 //-----------------------------------------------------------
@@ -65,6 +66,23 @@ void UiButton::SetColor(Color color)
 {
 	_sprite.setColor(color);
 }
+
+//-----------------------------------------------------------
+void UiButton::SetId(int id)
+{
+	_id = id;
+}
+
+//-----------------------------------------------------------
+int UiButton::GetId() const
+{
+	return _id;
+}
+
+
+
+
+
 
 
 

@@ -20,7 +20,7 @@ void KeyCallBack(UiButton& button);
 //-----------------------------------------------------------
 const string		GAME_NAME = "Light Cycles Game";
 const int			NPC_COUNT = 1;
-const int			TILE_COUNT_SIDE = 16;
+const int			TILE_COUNT_SIDE = 40;
 RenderWindow *		_window;
 View				_view;
 Event 				_event;
@@ -28,9 +28,13 @@ AssetManager *		_asset_manager;
 Player *			_player;
 vector<Npc*>		_npcs;
 vector<Tile*>		_tiles;
-UiButton			_button;
-Text				_vert_count_player;
+vector<UiButton*>	_uiButtons;
 HANDLE				_hConsole;
+
+//----------------------------------------------Ui components
+UiButton			_buttonExit;
+UiButton			_buttonResetBots;
+Text				_vert_count_player;
 
 //-----------------------------------------------------------
 int main()
@@ -49,12 +53,25 @@ int main()
 	_player->setScale(Vector2f(1, 1));
 
 	//Button init...
-	_button.SetKeyCallBack(&KeyCallBack);
-	_button.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_button.SetColor(Color::Green);
-	_button.SetTexture(_asset_manager->_tile);
-	_button.setPosition(100,100);
-	_button.SetSize(Rect<int>(_button.getPosition().x, _button.getPosition().y, 100, 50));
+	_uiButtons.push_back(&_buttonExit);
+	_buttonExit.SetKeyCallBack(&KeyCallBack);
+	_buttonExit.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_buttonExit.SetTexture(_asset_manager->_tile);
+	_buttonExit.setPosition(100, 100);
+	_buttonExit.SetSize(Rect<int>(_buttonExit.getPosition().x, _buttonExit.getPosition().y, 150, 50));
+	_buttonExit.Text.setFont(_asset_manager->_sansation);
+	_buttonExit.Text.setString("Close game");
+	_buttonExit.SetId(0);
+
+	_uiButtons.push_back(&_buttonResetBots);
+	_buttonResetBots.SetKeyCallBack(&KeyCallBack);
+	_buttonResetBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_buttonResetBots.SetTexture(_asset_manager->_tile);
+	_buttonResetBots.setPosition(100, 160);
+	_buttonResetBots.SetSize(Rect<int>(_buttonExit.getPosition().x, _buttonExit.getPosition().y, 150, 50));
+	_buttonResetBots.Text.setFont(_asset_manager->_sansation);
+	_buttonResetBots.Text.setString("Reset Bots");
+	_buttonResetBots.SetId(1);
 
 	//Map init TODO: Should be in its own class for the heck of it...
 	ConsoleDebugCallBack("Map gen started...", INFO);
@@ -72,7 +89,7 @@ int main()
 	//Npc init...
 	ConsoleDebugCallBack("Adding npc's...", INFO);
 	for (size_t i = 0; i < NPC_COUNT; i++)
-	{	
+	{
 		_npcs.push_back(new Npc());
 	}
 
@@ -84,8 +101,8 @@ int main()
 
 	//_vert_count_player init...
 	_vert_count_player.setFont(_asset_manager->_sansation);
-	_vert_count_player.setPosition(Vector2f(20,20));
-	_vert_count_player.setScale(Vector2f(1,1));
+	_vert_count_player.setPosition(Vector2f(20, 20));
+	_vert_count_player.setScale(Vector2f(1, 1));
 
 	ConsoleDebugCallBack("Game started...", SUCCESS);
 	//Start the game...
@@ -124,7 +141,10 @@ void Render()
 	}
 
 	//Ui draw call...
-	_window->draw(_button);
+	for each(auto button in _uiButtons)
+	{
+		_window->draw(*button);
+	}
 
 	//Debug draw calls...
 	_window->draw(_vert_count_player);
@@ -146,7 +166,7 @@ void Update(int dt, Event& event)
 	{
 		npc->Update(dt);
 	}
-	
+
 	_vert_count_player.setString("Player trail vert count = " + to_string(_player->GetTrail().getVertexCount()));
 
 	//General windows commands...
@@ -181,15 +201,30 @@ void Update(int dt, Event& event)
 	//Ui Button
 	if (Mouse::isButtonPressed(Mouse::Left))
 	{
-		_button.Update(dt, *_window);
+		for each(auto button in _uiButtons)
+		{
+			button->Update(dt, *_window);
+		}
 	}
 }
 
 //-----------------------------------------------------------
 void KeyCallBack(UiButton& button)
 {
-	ConsoleDebugCallBack("Game closing...", SUCCESS);
-	_window->close();
+	switch (button.GetId())
+	{
+	case 0:
+		ConsoleDebugCallBack("Button with id 0 clicked...", SUCCESS);
+		break;
+	case 1:
+		for each(auto npc in _npcs)
+		{
+			npc->Reset();
+		}
+		break;
+	default:
+		break;
+	}
 }
 
 //-----------------------------------------------------------

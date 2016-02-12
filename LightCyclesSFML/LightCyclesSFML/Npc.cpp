@@ -22,9 +22,16 @@ void Npc::Update(int dt)
 
 	if (!IsInsideRect(Rect<int>(0, 0, 1280, 720), getPosition()))
 	{
-		setPosition(Vector2f(640, 360));
-		ClearTrail();
+		Reset();
 	}
 
 	Player::Update(dt);
 }
+
+//-----------------------------------------------------------
+void Npc::Reset()
+{
+	setPosition(Vector2f(640, 360));
+	ClearTrail();
+}
+
