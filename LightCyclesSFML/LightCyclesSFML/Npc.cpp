@@ -31,7 +31,7 @@ void Npc::Update(int dt)
 //-----------------------------------------------------------
 void Npc::Reset()
 {
-	setPosition(Vector2f(640, 360));
+	setPosition(Vector2f(840, 560));
 	ClearTrail();
 }
 

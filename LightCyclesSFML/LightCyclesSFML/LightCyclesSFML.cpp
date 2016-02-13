@@ -52,6 +52,7 @@ int main()
 	_player->SetConsoleMsgCallBack(&ConsoleDebugCallBack);
 	_player->SetTexture(_asset_manager->_cycle_texture);
 	_player->setScale(Vector2f(1, 1));
+	_player->setPosition(Vector2f(200, 200));
 
 	//Button init...
 	_uiButtons.push_back(&_buttonExit);
@@ -187,6 +188,29 @@ void Update(int dt, Event& event)
 	else if (Keyboard::isKeyPressed(Keyboard::Right))
 		_player->SetDirection(RIGHT);
 
+	//Collision detection
+	
+	for each(auto npc in _npcs)
+	{
+		if (npc->GetTrail().GetVertexArray().size() > 1 && _player->GetTrail().GetVertexArray().size() > 1) 
+		{
+			if (VertexArrayIntersect(npc->GetTrail().GetVertexArray(), _player->GetTrail().GetVertexArray()))
+			{
+				/*
+				npc->Reset();
+				_player->setPosition(Vector2f(200, 200));
+				_player->ClearTrail();
+				*/
+			}
+		}
+	}
+
+	if (Keyboard::isKeyPressed(Keyboard::C))
+	{
+		float x, y;
+		cout << get_line_intersection(0, 0, 3, 3, 0, 1, 3, 4, &x, &y) << " at " << x << " " << y << endl;
+	} 
+
 	//Ui Button
 	if (event.type == Event::MouseButtonReleased && event.mouseButton.button == Mouse::Left)
 	{
@@ -212,7 +236,7 @@ void KeyCallBack(UiButton& button)
 		}
 		break;
 	case 2:
-		_player->setPosition(Vector2f(640,360));
+		_player->setPosition(Vector2f(200, 200));
 		_player->ClearTrail();
 		break;
 	default:
