@@ -29,6 +29,7 @@ public:
 	void SetTexture(Texture &tex);
 	void SetDirection(ROTATIONS rot);
 	void SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int));
+	void SetSingularVertex();
 	VertexArrayPlus& GetTrail() const;
 	virtual void Update(int dt);
 	void ClearTrail() const;

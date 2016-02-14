@@ -201,14 +201,26 @@ void Update(int dt, Event& event)
 	_vert_count_player.setString("Player trail vert count = " + to_string(_player->GetTrail().getVertexCount()));
 
 	//Player movement...
-	if (Keyboard::isKeyPressed(Keyboard::Down))
+	if (Keyboard::isKeyPressed(Keyboard::Down)) 
+	{	
 		_player->SetDirection(DOWN);
+		_player->SetSingularVertex();
+	}
 	else if (Keyboard::isKeyPressed(Keyboard::Up))
+	{
+		_player->SetSingularVertex();
 		_player->SetDirection(UP);
-	else if (Keyboard::isKeyPressed(Keyboard::Left))
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Left)) 
+	{
+		_player->SetSingularVertex();
 		_player->SetDirection(LEFT);
-	else if (Keyboard::isKeyPressed(Keyboard::Right))
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Right)) 
+	{
+		_player->SetSingularVertex();
 		_player->SetDirection(RIGHT);
+	}
 
 	//Collision detection	
 	for each(auto npc in _npcs)

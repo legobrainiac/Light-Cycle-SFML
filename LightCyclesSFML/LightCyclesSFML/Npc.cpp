@@ -25,10 +25,10 @@ Npc::~Npc()
 //-----------------------------------------------------------
 void Npc::Update(int dt)
 {
-	if ((_clock.getElapsedTime().asMilliseconds() > (rand() % 100 - 300)))
+	if ((_clock.getElapsedTime().asMilliseconds() > (rand() % 100 - 800)))
 	{
 		srand(seed);
-
+		Player::SetSingularVertex();
 		_rotation = GetRandomRotation(time(nullptr));
 	}
 

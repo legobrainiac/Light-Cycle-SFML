@@ -63,11 +63,7 @@ void Player::Update(int dt)
 
 	if (_clock.getElapsedTime().asMilliseconds() > 100)
 	{
-		Vertex _vertex;
-		_vertex.position = getPosition();
-		_vertex.color = _vertex_color;
-		_trail->append(_vertex);
-		_clock.restart();
+		SetSingularVertex();
 	}
 }
 
@@ -75,6 +71,16 @@ void Player::Update(int dt)
 VertexArrayPlus& Player::GetTrail() const
 {
 	return *_trail;
+}
+
+//-----------------------------------------------------------
+void Player::SetSingularVertex()
+{
+	Vertex _vertex;
+	_vertex.position = getPosition();
+	_vertex.color = _vertex_color;
+	_trail->append(_vertex);
+	_clock.restart();
 }
 
 //-----------------------------------------------------------
