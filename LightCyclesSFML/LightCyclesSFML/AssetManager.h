@@ -21,6 +21,7 @@ private:
 public:
 	Texture		_cycle_texture;
 	Texture		_tile;
+	Texture		_button_texture;
 	Font		_sansation;
 
 	void SetConsoleMsgCallBack(void(*ConsoleMsgCallBack)(string, int));

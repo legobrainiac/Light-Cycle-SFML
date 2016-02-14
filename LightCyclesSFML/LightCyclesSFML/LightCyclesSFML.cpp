@@ -60,51 +60,56 @@ int main()
 	_uiButtons.push_back(&_buttonExit);
 	_buttonExit.SetKeyCallBack(&KeyCallBack);
 	_buttonExit.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_buttonExit.SetTexture(_asset_manager->_tile);
+	_buttonExit.SetTexture(_asset_manager->_button_texture);
 	_buttonExit.setPosition(10, 100);
 	_buttonExit.SetSize(Rect<int>(_buttonExit.getPosition().x, _buttonExit.getPosition().y, 150, 50));
 	_buttonExit.Text.setFont(_asset_manager->_sansation);
-	_buttonExit.Text.setString("Close game");
+	_buttonExit.Text.setString("EXIT");
+	_buttonExit.Text.setScale(0.7,0.7);
 	_buttonExit.SetId(0);
 
 	_uiButtons.push_back(&_buttonResetBots);
 	_buttonResetBots.SetKeyCallBack(&KeyCallBack);
 	_buttonResetBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_buttonResetBots.SetTexture(_asset_manager->_tile);
+	_buttonResetBots.SetTexture(_asset_manager->_button_texture);
 	_buttonResetBots.setPosition(10, 160);
 	_buttonResetBots.SetSize(Rect<int>(_buttonResetBots.getPosition().x, _buttonResetBots.getPosition().y, 150, 50));
 	_buttonResetBots.Text.setFont(_asset_manager->_sansation);
-	_buttonResetBots.Text.setString("Reset Bots");
+	_buttonResetBots.Text.setString("RESET BOTS");
+	_buttonResetBots.Text.setScale(0.7, 0.7);
 	_buttonResetBots.SetId(1);
 
 	_uiButtons.push_back(&_buttonResetPlayer);
 	_buttonResetPlayer.SetKeyCallBack(&KeyCallBack);
 	_buttonResetPlayer.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_buttonResetPlayer.SetTexture(_asset_manager->_tile);
+	_buttonResetPlayer.SetTexture(_asset_manager->_button_texture);
 	_buttonResetPlayer.setPosition(10, 220);
 	_buttonResetPlayer.SetSize(Rect<int>(_buttonResetPlayer.getPosition().x, _buttonResetPlayer.getPosition().y, 150, 50));
 	_buttonResetPlayer.Text.setFont(_asset_manager->_sansation);
-	_buttonResetPlayer.Text.setString("Reset Player");
+	_buttonResetPlayer.Text.setString("RESET PLAYER");
+	_buttonResetPlayer.Text.setScale(0.7, 0.7);
 	_buttonResetPlayer.SetId(2);
 
 	_uiButtons.push_back(&_buttonAddBots);
 	_buttonAddBots.SetKeyCallBack(&KeyCallBack);
 	_buttonAddBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_buttonAddBots.SetTexture(_asset_manager->_tile);
+	_buttonAddBots.SetTexture(_asset_manager->_button_texture);
 	_buttonAddBots.setPosition(Vector2f(10, 280));
 	_buttonAddBots.SetSize(Rect<int>(_buttonAddBots.getPosition().x, _buttonAddBots.getPosition().y, 150, 50));
 	_buttonAddBots.Text.setFont(_asset_manager->_sansation);
-	_buttonAddBots.Text.setString("Add bot");
+	_buttonAddBots.Text.setString("ADD BOT");
+	_buttonAddBots.Text.setScale(0.7, 0.7);
 	_buttonAddBots.SetId(3);
 
 	_uiButtons.push_back(&_buttonClearBots);
 	_buttonClearBots.SetKeyCallBack(&KeyCallBack);
 	_buttonClearBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
-	_buttonClearBots.SetTexture(_asset_manager->_tile);
+	_buttonClearBots.SetTexture(_asset_manager->_button_texture);
 	_buttonClearBots.setPosition(Vector2f(10, 340));
 	_buttonClearBots.SetSize(Rect<int>(_buttonClearBots.getPosition().x, _buttonClearBots.getPosition().y, 150, 50));
 	_buttonClearBots.Text.setFont(_asset_manager->_sansation);
-	_buttonClearBots.Text.setString("Clear bots");
+	_buttonClearBots.Text.setString("CLEAR BOTS");
+	_buttonClearBots.Text.setScale(0.7, 0.7);
 	_buttonClearBots.SetId(4);
 
 	//Map init TODO: Should be in its own class for the heck of it...
@@ -201,8 +206,8 @@ void Update(int dt, Event& event)
 	_vert_count_player.setString("Player trail vert count = " + to_string(_player->GetTrail().getVertexCount()));
 
 	//Player movement...
-	if (Keyboard::isKeyPressed(Keyboard::Down)) 
-	{	
+	if (Keyboard::isKeyPressed(Keyboard::Down))
+	{
 		_player->SetDirection(DOWN);
 		_player->SetSingularVertex();
 	}
@@ -211,12 +216,12 @@ void Update(int dt, Event& event)
 		_player->SetSingularVertex();
 		_player->SetDirection(UP);
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Left)) 
+	else if (Keyboard::isKeyPressed(Keyboard::Left))
 	{
 		_player->SetSingularVertex();
 		_player->SetDirection(LEFT);
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Right)) 
+	else if (Keyboard::isKeyPressed(Keyboard::Right))
 	{
 		_player->SetSingularVertex();
 		_player->SetDirection(RIGHT);

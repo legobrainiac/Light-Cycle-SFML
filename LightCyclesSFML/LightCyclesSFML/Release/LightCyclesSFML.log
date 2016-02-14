@@ -1,11 +1,19 @@
-﻿  Npc.cpp
+﻿  LightCyclesSFML.cpp
 c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-Npc.cpp(6): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-Npc.cpp(15): warning C4244: '=': conversion from 'time_t' to 'int', possible loss of data
-Npc.cpp(32): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
+LightCyclesSFML.cpp(65): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(68): warning C4305: 'argument': truncation from 'double' to 'float'
+LightCyclesSFML.cpp(76): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(79): warning C4305: 'argument': truncation from 'double' to 'float'
+LightCyclesSFML.cpp(87): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(90): warning C4305: 'argument': truncation from 'double' to 'float'
+LightCyclesSFML.cpp(98): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(101): warning C4305: 'argument': truncation from 'double' to 'float'
+LightCyclesSFML.cpp(109): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(112): warning C4305: 'argument': truncation from 'double' to 'float'
+LightCyclesSFML.cpp(121): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
   Generating code
-  1 of 479 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
+  0 of 479 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    9 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   LightCyclesSFML.vcxproj -> C:\Users\tomas\Documents\GitHub\Light-Cycle-SFML\LightCyclesSFML\Release\LightCyclesSFML.exe

@@ -1,5 +1,4 @@
 #include "UiButton.h"
-#include <iostream>
 
 //-----------------------------------------------------------
 UiButton::UiButton(Rect<int> buttonSize, Color color)

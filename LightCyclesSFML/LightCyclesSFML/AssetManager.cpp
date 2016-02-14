@@ -38,5 +38,9 @@ void AssetManager::LoadTextures()
 	{
 		ConsoleMessageCallBack("Error loading tile texture...", ERRO);
 	}
+	if (!_button_texture.loadFromFile("Assets/button.png"))
+	{
+		ConsoleMessageCallBack("Error loading button texture...", ERRO);
+	}
 }
 
