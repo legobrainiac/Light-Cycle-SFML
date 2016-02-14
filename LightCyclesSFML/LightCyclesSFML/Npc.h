@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "utils.h"
+#include <ctime>
 #include "Player.h"
 
 //-----------------------------------------------------------
@@ -11,10 +11,14 @@ using namespace std;
 //-----------------------------------------------------------
 class Npc : public Player
 {
+private:
+	int seed;
+
 	//-----------------------------------------------------------
 public:
 	void Update(int dt) override;
 	void Reset();
+	Npc(Texture &tex);
 	Npc();
 	~Npc();
 };

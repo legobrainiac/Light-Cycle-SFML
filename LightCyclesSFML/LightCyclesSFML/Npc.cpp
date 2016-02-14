@@ -1,8 +1,18 @@
 #include "Npc.h"
 
 //-----------------------------------------------------------
-Npc::Npc() : Player()
+Npc::Npc(Texture &tex) : Player()
 {
+	seed = time(nullptr);
+	_name = "Npc";
+	_vertex_color = Color::Red;
+	_sprite.setTexture(tex);
+}
+
+//-----------------------------------------------------------
+Npc::Npc()
+{
+	seed = time(nullptr);
 	_name = "Npc";
 	_vertex_color = Color::Red;
 }
@@ -17,6 +27,8 @@ void Npc::Update(int dt)
 {
 	if ((_clock.getElapsedTime().asMilliseconds() > (rand() % 100 - 300)))
 	{
+		srand(seed);
+
 		_rotation = GetRandomRotation(time(nullptr));
 	}
 
@@ -31,7 +43,7 @@ void Npc::Update(int dt)
 //-----------------------------------------------------------
 void Npc::Reset()
 {
-	setPosition(Vector2f(840, 560));
+	setPosition(Vector2f(640, 360));
 	ClearTrail();
 }
 

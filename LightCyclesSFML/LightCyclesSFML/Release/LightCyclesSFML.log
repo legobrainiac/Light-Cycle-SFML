@@ -1,23 +1,13 @@
-﻿  AssetManager.cpp
+﻿  LightCyclesSFML.cpp
 c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  LightCyclesSFML.cpp
-c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-LightCyclesSFML.cpp(63): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-LightCyclesSFML.cpp(73): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-LightCyclesSFML.cpp(83): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
-LightCyclesSFML.cpp(94): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
-  Npc.cpp
-c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-Npc.cpp(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
-  Player.cpp
-c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Tile.cpp
-c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  UiButton.cpp
-c:\users\tomas\documents\github\light-cycle-sfml\lightcyclessfml\lightcyclessfml\utils.h(86): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-UiButton.cpp(14): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(65): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(75): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(85): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(95): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(105): warning C4244: 'argument': conversion from 'const float' to 'int', possible loss of data
+LightCyclesSFML.cpp(116): warning C4244: 'argument': conversion from 'size_t' to 'float', possible loss of data
   Generating code
-  21 of 472 functions ( 4.4%) were compiled, the rest were copied from previous compilation.
+  0 of 478 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     16 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

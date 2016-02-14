@@ -89,12 +89,7 @@ static bool IsInsideRect(Rect<int> rect, Vector2f pos)
 //-----------------------------------------------------------
 static bool VertexArrayIntersect(vector<Vertex> array1, vector<Vertex> array2)
 {
-	//Not sure if this is going to be efficient, lets hope so... 
-	//Idea: check vertex intersection by pairs...
-	//I got help here: http://stackoverflow.com/questions/563198/how-do-you-detect-where-two-line-segments-intersect
-
-
-	for (size_t i = 0; i < array1.size(); i++)
+	for (size_t i = 0; i < array1.size() - 1; i++)
 	{
 		Vertex vertices1[2]
 		{
@@ -102,12 +97,12 @@ static bool VertexArrayIntersect(vector<Vertex> array1, vector<Vertex> array2)
 			array1[i + 1]
 		};
 
-		for (size_t k = 0; k < array2.size(); k++)
+		for (size_t k = 0; k < array2.size() - 1; k++)
 		{
 			Vertex vertices2[2]
 			{
-				array2[i],
-				array2[i + 1]
+				array2[k],
+				array2[k + 1]
 			};
 
 			//Logic goes here
@@ -127,7 +122,6 @@ static bool VertexArrayIntersect(vector<Vertex> array1, vector<Vertex> array2)
 					&y
 					) == 1)
 			{
-				cout << x << " " << y << endl;
 				return true;
 			}
 		}

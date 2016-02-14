@@ -35,6 +35,8 @@ HANDLE				_hConsole;
 UiButton			_buttonExit;
 UiButton			_buttonResetBots;
 UiButton			_buttonResetPlayer;
+UiButton			_buttonAddBots;
+UiButton			_buttonClearBots;
 Text				_vert_count_player;
 
 //-----------------------------------------------------------
@@ -59,7 +61,7 @@ int main()
 	_buttonExit.SetKeyCallBack(&KeyCallBack);
 	_buttonExit.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
 	_buttonExit.SetTexture(_asset_manager->_tile);
-	_buttonExit.setPosition(100, 100);
+	_buttonExit.setPosition(10, 100);
 	_buttonExit.SetSize(Rect<int>(_buttonExit.getPosition().x, _buttonExit.getPosition().y, 150, 50));
 	_buttonExit.Text.setFont(_asset_manager->_sansation);
 	_buttonExit.Text.setString("Close game");
@@ -69,7 +71,7 @@ int main()
 	_buttonResetBots.SetKeyCallBack(&KeyCallBack);
 	_buttonResetBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
 	_buttonResetBots.SetTexture(_asset_manager->_tile);
-	_buttonResetBots.setPosition(100, 160);
+	_buttonResetBots.setPosition(10, 160);
 	_buttonResetBots.SetSize(Rect<int>(_buttonResetBots.getPosition().x, _buttonResetBots.getPosition().y, 150, 50));
 	_buttonResetBots.Text.setFont(_asset_manager->_sansation);
 	_buttonResetBots.Text.setString("Reset Bots");
@@ -79,11 +81,31 @@ int main()
 	_buttonResetPlayer.SetKeyCallBack(&KeyCallBack);
 	_buttonResetPlayer.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
 	_buttonResetPlayer.SetTexture(_asset_manager->_tile);
-	_buttonResetPlayer.setPosition(100, 220);
+	_buttonResetPlayer.setPosition(10, 220);
 	_buttonResetPlayer.SetSize(Rect<int>(_buttonResetPlayer.getPosition().x, _buttonResetPlayer.getPosition().y, 150, 50));
 	_buttonResetPlayer.Text.setFont(_asset_manager->_sansation);
 	_buttonResetPlayer.Text.setString("Reset Player");
 	_buttonResetPlayer.SetId(2);
+
+	_uiButtons.push_back(&_buttonAddBots);
+	_buttonAddBots.SetKeyCallBack(&KeyCallBack);
+	_buttonAddBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_buttonAddBots.SetTexture(_asset_manager->_tile);
+	_buttonAddBots.setPosition(Vector2f(10, 280));
+	_buttonAddBots.SetSize(Rect<int>(_buttonAddBots.getPosition().x, _buttonAddBots.getPosition().y, 150, 50));
+	_buttonAddBots.Text.setFont(_asset_manager->_sansation);
+	_buttonAddBots.Text.setString("Add bot");
+	_buttonAddBots.SetId(3);
+
+	_uiButtons.push_back(&_buttonClearBots);
+	_buttonClearBots.SetKeyCallBack(&KeyCallBack);
+	_buttonClearBots.SetConsoleMsgCallBack(&ConsoleDebugCallBack);
+	_buttonClearBots.SetTexture(_asset_manager->_tile);
+	_buttonClearBots.setPosition(Vector2f(10, 340));
+	_buttonClearBots.SetSize(Rect<int>(_buttonClearBots.getPosition().x, _buttonClearBots.getPosition().y, 150, 50));
+	_buttonClearBots.Text.setFont(_asset_manager->_sansation);
+	_buttonClearBots.Text.setString("Clear bots");
+	_buttonClearBots.SetId(4);
 
 	//Map init TODO: Should be in its own class for the heck of it...
 	ConsoleDebugCallBack("Map gen started...", INFO);
@@ -188,28 +210,20 @@ void Update(int dt, Event& event)
 	else if (Keyboard::isKeyPressed(Keyboard::Right))
 		_player->SetDirection(RIGHT);
 
-	//Collision detection
-	
+	//Collision detection	
 	for each(auto npc in _npcs)
 	{
-		if (npc->GetTrail().GetVertexArray().size() > 1 && _player->GetTrail().GetVertexArray().size() > 1) 
+		if (npc->GetTrail().GetVertexArray().size() > 1 && _player->GetTrail().GetVertexArray().size() > 1)
 		{
 			if (VertexArrayIntersect(npc->GetTrail().GetVertexArray(), _player->GetTrail().GetVertexArray()))
 			{
-				/*
 				npc->Reset();
 				_player->setPosition(Vector2f(200, 200));
 				_player->ClearTrail();
-				*/
+				ConsoleDebugCallBack("Collision...", INFO);
 			}
 		}
 	}
-
-	if (Keyboard::isKeyPressed(Keyboard::C))
-	{
-		float x, y;
-		cout << get_line_intersection(0, 0, 3, 3, 0, 1, 3, 4, &x, &y) << " at " << x << " " << y << endl;
-	} 
 
 	//Ui Button
 	if (event.type == Event::MouseButtonReleased && event.mouseButton.button == Mouse::Left)
@@ -238,6 +252,13 @@ void KeyCallBack(UiButton& button)
 	case 2:
 		_player->setPosition(Vector2f(200, 200));
 		_player->ClearTrail();
+		break;
+	case 3:
+		_npcs.push_back(new Npc(_asset_manager->_cycle_texture));
+		break;
+	case 4:
+		_npcs.clear();
+		_npcs.push_back(new Npc(_asset_manager->_cycle_texture));
 		break;
 	default:
 		break;
